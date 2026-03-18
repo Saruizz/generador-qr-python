@@ -1,0 +1,47 @@
+# Entornos virtuales
+venv/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# Archivos compilados en Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos relacionados a empaquetado y distribución
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+bin/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# Variables de entorno local y secretos
+.env
+.env.local
+
+# Herramientas y configuraciones IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Caché general y archivos de SO
+.DS_Store
+Thumbs.db
+.cache/
+.pytest_cache/
+.mypy_cache/
+
+# Archivos específicos de plataformas (Vercel, Streamlit config local)
+.vercel/
+.streamlit/

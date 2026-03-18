@@ -37,6 +37,29 @@ python -m streamlit run app.py
 
 Tu navegador web predeterminado se abrirá automáticamente en la dirección `http://localhost:8501/` con el generador de QR listo para usar. 
 
+## 🌐 Consumo por API REST (Integración con otros sistemas)
+
+Si en lugar de la interfaz gráfica web deseas integrar el generador en otra aplicación (como un sistema web en React/Angular, un software de facturación o una app móvil), hemos disponibilizado una versión API usando **FastAPI**.
+
+### Levantar el Servidor de la API
+Detén la terminal actual si está corriendo Streamlit, y ejecuta:
+```bash
+python -m uvicorn api:app --reload
+```
+Por defecto el servicio de la API correrá en el puerto `8000`.
+
+### Ejemplos de Integración
+Una vez la API esté corriendo en un servidor, el endpoint `/generar-qr` retorna directamente una imagen PNG nativa. Puedes incrustarla desde cualquier frontend fácilmente usando una etiqueta HTML de imagen pasándole parámetros:
+
+```html
+<!-- Ejemplo: QR en color azul con fondo blanco -->
+<img src="http://localhost:8000/generar-qr?texto=https://mipagina.com/pago&fill_color=blue&back_color=white" alt="QR Code" width="200" height="200">
+```
+
+### Documentación de la API Interactiva
+FastAPI autogenera la documentación del endpoint. Navega a la siguiente dirección en tu buscador mientas la API corre para probarla interactivamente:
+* Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
+
 ---
 > 🔒 **Nota Privacidad / Acceso en Red:**  
 > Por defecto, Streamlit mostrará tu Generador a otras personas en tu misma red Wi-Fi mediante un "Network URL". Si deseas operar de modo completamente privado y restringir el servidor a tu computador, puedes ejecutar la aplicación así:  
