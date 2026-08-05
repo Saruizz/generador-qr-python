@@ -8,7 +8,7 @@ Este proyecto ha sido preparado profesionalmente con una arquitectura multi-serv
 
 El archivo `docker-compose.yml` expone dos servicios contenerizados optimizados mediante el `Dockerfile` del proyecto:
 1. **`app-web`** *(Puerto 8501)*: Interfaz de usuario en tiempo real creada con Streamlit.
-2. **`api-rest`** *(Puerto 8000)*: Backend FastAPI listo para integraciones y consumo con Swagger UI (`/docs`).
+2. **`api-rest`** *(Puerto 8001)*: Backend FastAPI listo para integraciones y consumo con Swagger UI (`/docs`).
 
 ---
 
@@ -74,7 +74,7 @@ Al importar el proyecto, Coolify desglosará tus servicios y te permitirá asign
    * *(Coolify dirigirá el tráfico de ese subdominio directamente al puerto `8501`)*
 2. En la tarjeta de configuración del servicio **`api-rest`**:
    * Introducir dominio: `https://api.qr.tudominio.com`
-   * *(Coolify dirigirá el tráfico al puerto `8000` del backend)*
+   * *(Coolify dirigirá el tráfico al puerto `8001` del backend)*
 
 ### 4. Iniciar el Despliegue
 * Presiona el botón **Deploy** en la parte superior derecha. Coolify comenzará el proceso, clonará el código, construirá la imagen optimizada con el `Dockerfile` y expondrá de forma segura ambas URLs con HTTPS y certificado SSL operativo.

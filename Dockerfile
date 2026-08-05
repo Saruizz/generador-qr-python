@@ -27,7 +27,7 @@ RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
 # Exponer los puertos que utilizan Streamlit y FastAPI
-EXPOSE 8501 8000
+EXPOSE 8501 8001
 
 # Comando por defecto (será sobrescrito en el docker-compose por cada servicio)
 CMD ["python", "-m", "streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

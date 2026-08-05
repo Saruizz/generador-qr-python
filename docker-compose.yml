@@ -21,10 +21,10 @@ services:
       dockerfile: Dockerfile
     container_name: generador-qr-api
     # --proxy-headers y --forwarded-allow-ips son vitales detrás de Traefik y Cloudflare para que Swagger UI / HTTP esquemas reconozcan HTTPS
-    command: python -m uvicorn api:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips="*"
+    command: python -m uvicorn api:app --host 0.0.0.0 --port 8001 --proxy-headers --forwarded-allow-ips="*"
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "8001:8001"
     environment:
       - PYTHONUNBUFFERED=1
     networks:
