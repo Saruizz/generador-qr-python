@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: generador-qr-web
+    command: python -m streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false --server.enableXsrfProtection=true
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - qr-network
+
+  api-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: generador-qr-api
+    # --proxy-headers y --forwarded-allow-ips son vitales detrás de Traefik y Cloudflare para que Swagger UI / HTTP esquemas reconozcan HTTPS
+    command: python -m uvicorn api:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips="*"
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - qr-network
+
+networks:
+  qr-network:
+    driver: bridge
