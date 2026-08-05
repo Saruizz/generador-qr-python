@@ -26,8 +26,13 @@ with col_color1:
     color_frente = st.color_picker("Color del Código QR", "#000000")
 
 with col_color2:
-    # Selector de color para el fondo (back_color). Inicia en blanco.
-    color_fondo = st.color_picker("Color de Fondo", "#FFFFFF")
+    # Opción para fondo transparente (muy útil para logotipos y PNGs flotantes)
+    fondo_transparente = st.checkbox("✨ Fondo Transparente", value=False)
+    
+    # Selector de color para el fondo (back_color). Se deshabilita automáticamente al marcar el checkbox.
+    color_fondo_picker = st.color_picker("Color de Fondo", "#FFFFFF", disabled=fondo_transparente)
+    color_fondo = "transparent" if fondo_transparente else color_fondo_picker
+
 
 # Lógica principal de generación: se ejecuta si hay texto ingresado
 if texto_usuario:

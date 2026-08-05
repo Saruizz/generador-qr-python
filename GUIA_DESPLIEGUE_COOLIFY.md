@@ -67,14 +67,16 @@ Con tus dominios apuntados y Coolify en marcha, procede a registrar el proyecto:
 ### 2. Seleccionar el Tipo de Build
 * Cuando Coolify te pregunte el tipo de construcción o paquete, elige **Docker Compose** (Coolify leerá automáticamente tu archivo `docker-compose.yml`).
 
-### 3. Configurar Dominios por Servicio
-Al importar el proyecto, Coolify desglosará tus servicios y te permitirá asignar un **Dominio (URL)** para cada uno:
+### 3. Configurar Dominios por Servicio (¡Importante para evitar Error 502!)
+Al importar el proyecto, Coolify desglosará tus servicios y te permitirá asignar un **Dominio (URL)** para cada uno. 
+Para asegurarte de que el proxy de Coolify (Traefik) envíe las peticiones al puerto interno correcto del contenedor y no recibas un **Error 502 Bad Gateway**, debes adjuntar el puerto interno de cada servicio al final de la URL en la casilla de dominio:
+
 1. En la tarjeta de configuración del servicio **`app-web`**:
-   * Introducir dominio: `https://qr.tudominio.com`
-   * *(Coolify dirigirá el tráfico de ese subdominio directamente al puerto `8501`)*
+   * Introducir dominio: `https://qr.tudominio.com:8501`
+   * *(Nota: El puerto `:8501` al final es una instrucción para que el proxy Traefik enpaquete el tráfico a ese puerto; tus visitantes entrarán de forma transparente a `https://qr.tudominio.com`)*
 2. En la tarjeta de configuración del servicio **`api-rest`**:
-   * Introducir dominio: `https://api.qr.tudominio.com`
-   * *(Coolify dirigirá el tráfico al puerto `8001` del backend)*
+   * Introducir dominio: `https://api.qr.tudominio.com:8001`
+   * *(Dirige el tráfico exactamente al puerto `8001` del backend de Uvicorn)*
 
 ### 4. Iniciar el Despliegue
 * Presiona el botón **Deploy** en la parte superior derecha. Coolify comenzará el proceso, clonará el código, construirá la imagen optimizada con el `Dockerfile` y expondrá de forma segura ambas URLs con HTTPS y certificado SSL operativo.
