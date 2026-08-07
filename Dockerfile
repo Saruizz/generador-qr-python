@@ -19,6 +19,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+# Inyectar archivos PWA en el directorio estático nativo de Streamlit
+COPY pwa/ /usr/local/lib/python3.11/site-packages/streamlit/static/
+RUN sed -i 's|<head>|<head><link rel="manifest" href="./manifest.json"><script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js");}</script>|g' /usr/local/lib/python3.11/site-packages/streamlit/static/index.html
+
 # Copiar el resto del código fuente del proyecto
 COPY . .
 

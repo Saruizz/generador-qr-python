@@ -1,0 +1,21 @@
+{
+  "name": "Generador QR Pro",
+  "short_name": "Generador QR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "description": "Generador de Códigos QR profesionales y personalizables.",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
